@@ -10,8 +10,7 @@
         :root { --main: #ff007f; --bg: #050505; --text: #ffffff; }
         
         html, body { 
-            margin: 0; 
-            padding: 0; 
+            margin: 0; padding: 0; 
             background-color: var(--bg) !important; 
             color: var(--text) !important; 
             font-family: 'Inter', sans-serif;
@@ -28,7 +27,9 @@
         .admin-name { font-size: 1.1em; font-weight: 600; margin-bottom: 5px; }
         .admin-tag { font-size: 0.7em; color: #888; font-family: 'Courier Prime'; }
 
-        .main-container { width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.03); padding: 30px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; box-sizing: border-box; }
+        .main-container { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 15px; flex-shrink: 0; }
+        
+        .content-box { background: rgba(255, 255, 255, 0.03); padding: 30px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); box-sizing: border-box; }
 
         .avatar-wrapper { position: relative; width: 120px; height: 120px; margin: 0 auto 30px; }
         .avatar { width: 100%; height: 100%; border-radius: 30px; border: 2px solid var(--main); overflow: hidden; background: #111; box-shadow: 0 0 20px rgba(255, 0, 127, 0.3); }
@@ -37,74 +38,75 @@
         h1 { font-size: 1.8em; margin: 0; color: var(--main); text-align: center; }
         .sub-h1 { text-align: center; color: var(--main); font-size: 0.5em; letter-spacing: 4px; margin-bottom: 20px; }
 
+        .important-ps { background: rgba(255, 0, 127, 0.1); border: 1px solid var(--main); padding: 15px; border-radius: 20px; margin-bottom: 15px; font-size: 0.75em; color: #fff; text-align: center; line-height: 1.4; }
+        .ban-notice { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--main); padding: 15px; border-radius: 20px; margin-bottom: 15px; font-size: 0.75em; color: #fff; text-align: center; }
+
+        .welcome-highlight { background: linear-gradient(135deg, rgba(255, 0, 127, 0.2), rgba(0, 0, 0, 0.2)); border: 1px solid var(--main); padding: 20px; border-radius: 20px; text-align: center; font-weight: 600; color: #fff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0px rgba(255, 0, 127, 0.4); } 50% { box-shadow: 0 0 15px rgba(255, 0, 127, 0.6); } 100% { box-shadow: 0 0 0px rgba(255, 0, 127, 0.4); } }
+
         .rule-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 15px; margin: 8px 0; border-radius: 15px; cursor: pointer; transition: 0.3s; font-size: 0.85em; color: #fff; }
         .rule-btn:hover, .rule-btn.active { border-color: var(--main); background: rgba(255,0,127,0.15); }
 
+        /* Панель слева */
         .detail-panel { 
-            width: 0; opacity: 0; background: rgba(255, 255, 255, 0.05); border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); 
-            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); overflow: hidden; box-sizing: border-box;
+            position: fixed; left: -350px; top: 20px; width: 300px; height: 90vh;
+            background: rgba(10, 10, 10, 0.95); border-radius: 0 40px 40px 0; border: 1px solid var(--main);transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1); padding: 30px; box-sizing: border-box; z-index: 100;
         }
-        .detail-panel.active { width: 300px; opacity: 1; padding: 30px; }
+        .detail-panel.active { left: 0; }
         
-        .detail-content { opacity: 1; transition: opacity 0.2s; color: #ccc; }
-        .detail-content.fade-out { opacity: 0; }
         .detail-title { color: var(--main); font-size: 1.2em; font-weight: 900; margin-bottom: 15px; }
         .detail-text { font-size: 0.9em; line-height: 1.6; color: #ccc; }
-        
-        .disclaimer { font-size: 0.65em; color: #777; margin-top: 30px; text-align: center; }
 
         @media (max-width: 850px) { 
             .wrapper { flex-direction: column; align-items: center; } 
             .admin-sidebar { flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; gap: 10px; }
-            .detail-panel.active { width: 95% !important; margin-top: 20px; padding: 20px !important; }
+            .detail-panel { width: 100%; left: -100%; border-radius: 0; }
+            .detail-panel.active { left: 0; }
         }
     </style>
 </head>
 <body>
-
-    <div class="wrapper"><div class="admin-sidebar">
-            <div class="admin-box">
-                <div class="admin-rank">ГЛАВНЫЙ</div>
-                <div class="admin-name">Алёна</div>
-                <div class="admin-tag">УПРАВЛЕНИЕ СЕТЬЮ</div>
-            </div>
-            <div class="admin-box">
-                <div class="admin-rank">МОДЕРАТОР</div>
-                <div class="admin-name">لي</div>
-                <div class="admin-tag">НАЧАЛЬНИК ЧАТА</div>
-            </div>
-            <div class="admin-box">
-                <div class="admin-rank">МОДЕРАТОР</div>
-                <div class="admin-name">Ханна</div>
-                <div class="admin-tag">Ramazanov_a❤️</div>
-            </div>
+    <div class="wrapper">
+        <div class="admin-sidebar">
+            <div class="admin-box"><div class="admin-rank">ГЛАВНЫЙ</div><div class="admin-name">Алёна</div><div class="admin-tag">УПРАВЛЕНИЕ СЕТЬЮ</div></div>
+            <div class="admin-box"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">لينا</div><div class="admin-tag">НАЧАЛЬНИК ЧАТА</div></div>
+            <div class="admin-box"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">Ханна</div><div class="admin-tag">Ramazanov_a❤️</div></div>
         </div>
 
         <div class="main-container">
-            <div class="avatar-wrapper">
-                <div class="avatar">
-                    <img src="photo_2026-07-04_16-19-39.jpg" alt="Avatar" onerror="this.src='https://ui-avatars.com/api/?name=D&background=ff007f&color=fff'">
+            <div class="content-box">
+                <div class="avatar-wrapper"><div class="avatar"><img src="photo_2026-07-04_16-19-39.jpg" alt="Avatar"></div></div>
+                <h1>ДОФАМИН</h1>
+                <div class="sub-h1">KAVKAZ 2.0</div>
+                
+                <div class="ban-notice">Владелец чата имеет право выдать бан без объяснения причин ❤️</div>
+                
+                <div class="important-ps">
+                    P.S. Администрация оставляет за собой право эскалации наказания при квалификации правонарушения как "угроза стабильности чата". Решение является исключительной прерогативой администратора и не требует обсуждения.
+                </div>
+
+                <div id="list">
+                    <div class="rule-btn" onclick="showDetail(this, 'Возраст', 'Минимальный возраст участников - 16+')">Возраст 16+</div>
+                    <div class="rule-btn" onclick="showDetail(this, 'Мат и оскорбления', 'Мат (завуалированный в том числе), оскорбления, унижения, задевание чести - мут 15 мин, повторно час')">Мат и оскорбления</div>
+                    <div class="rule-btn" onclick="showDetail(this, 'Религия и родители', 'Оскорбление религии, родителей - бан')">Религия / Родители</div>
+                    <div class="rule-btn" onclick="showDetail(this, 'Розжиг', 'Высмеивание любой религии или нации - мут 15 мин, повторно час')">Нация или религия</div>
+                    <div class="rule-btn" onclick="showDetail(this, 'Политика', 'Политические темы, в частности СВО и подобное - мут 15 мин, повторно час')">Политика, СВО</div>
+                    <div class="rule-btn" onclick="showDetail(this, 'Докс и сливы', 'Угрозы доксом, сливом, пробивание участников - бан')">Угрозы доксом</div>
+                    <div class="rule-btn" onclick="showDetail(this, 'Контент', 'Шок-контент, 18+ - мут 15 мин, повторно - час')">Шок-контент 18+</div>
+                    <div class="rule-btn" onclick="showDetail(this, 'Реклама', 'Попрошайничество, реклама - мут час')">Попрошайничество</div>
+                    <div class="rule-btn" onclick="showDetail(this, 'Запрещенные вещества', 'Любое обсуждение наркотиков - мут 15 мин')">Наркотики</div>
                 </div>
             </div>
-            <h1>ДОФАМИН</h1>
-            <div class="sub-h1">KAVKAZ 2.0</div>
-            
-            <div id="list">
-                <div class="rule-btn" onclick="showDetail(this, 'Возраст 16+', 'Минимальный порог входа — 16 лет.')">Возраст 16+</div>
-                <div class="rule-btn" onclick="showDetail(this, 'Мат и оскорбления', 'Первое нарушение — мут 15 минут, повторно — 1 час.')">Мат, оскорбления</div>
-                <div class="rule-btn" onclick="showDetail(this, 'Религия / Родители', 'Любые оскорбления религии или родителей — МГНОВЕННЫЙ БАН.')">Религия / Родители</div>
-                <div class="rule-btn" onclick="showDetail(this, 'Нация / Религия', 'Запрет на розжиг розни. Мут 15 мин, повторно — 1 час.')">Нация или религия</div>
-                <div class="rule-btn" onclick="showDetail(this, 'Политика и СВО', 'Обсуждение острых тем запрещено. Мут 15 мин, повторно — 1 час.')">Политика, СВО</div>
-                <div class="rule-btn" onclick="showDetail(this, 'Угрозы доксом', 'Угрозы деанонимизацией — МГНОВЕННЫЙ БАН.')">Угрозы доксом, сливом</div>
-            </div>
 
-            <div class="disclaimer">Владелец чата имеет право выдать бан без объяснения причин ❤️</div>
+            <div class="content-box">
+                <div class="welcome-highlight">Веди себя адекватно и уважительно, и тогда тебе здесь понравится ❤️</div>
+            </div>
         </div>
 
-        <div class="detail-panel" id="detailPanel">
-            <div class="detail-content" id="dContent">
+        <div class="detail-panel" id="detailPanel" onclick="this.classList.remove('active')"><div class="detail-content">
                 <div class="detail-title" id="dTitle">Информация</div>
                 <div class="detail-text" id="dText">Выберите правило из списка...</div>
+                <p style="font-size: 0.7em; color: #555; margin-top: 20px;">Нажми на панель, чтобы закрыть</p>
             </div>
         </div>
     </div>
@@ -112,25 +114,9 @@
     <script>
         function showDetail(el, title, text) {
             const panel = document.getElementById('detailPanel');
-            const dContent = document.getElementById('dContent');
-            const dTitle = document.getElementById('dTitle');
-            const dText = document.getElementById('dText');
-            const isActive = el.classList.contains('active');
-
-            document.querySelectorAll('.rule-btn').forEach(btn => btn.classList.remove('active'));
-
-            if (isActive) {
-                panel.classList.remove('active');
-            } else {
-                el.classList.add('active');
-                dContent.classList.add('fade-out');
-                setTimeout(() => {
-                    dTitle.innerText = title;
-                    dText.innerText = text;
-                    dContent.classList.remove('fade-out');
-                }, 200);
-                panel.classList.add('active');
-            }
+            document.getElementById('dTitle').innerText = title;
+            document.getElementById('dText').innerText = text;
+            panel.classList.add('active');
         }
     </script>
 </body>
