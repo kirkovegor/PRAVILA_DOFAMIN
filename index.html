@@ -9,7 +9,6 @@
         
         :root { --main: #ff007f; --bg: #050505; --text: #ffffff; }
         
-        /* ПРИНУДИТЕЛЬНЫЕ СТИЛИ ДЛЯ ФОНА */
         html, body { 
             margin: 0; 
             padding: 0; 
@@ -50,6 +49,7 @@
         .detail-content { opacity: 1; transition: opacity 0.2s; color: #ccc; }
         .detail-content.fade-out { opacity: 0; }
         .detail-title { color: var(--main); font-size: 1.2em; font-weight: 900; margin-bottom: 15px; }
+        .detail-text { font-size: 0.9em; line-height: 1.6; color: #ccc; }
         
         .disclaimer { font-size: 0.65em; color: #777; margin-top: 30px; text-align: center; }
 
@@ -62,10 +62,22 @@
 </head>
 <body>
 
-    <div class="wrapper">
-        <div class="admin-sidebar"><div class="admin-box"><div class="admin-rank">ГЛАВНЫЙ</div><div class="admin-name">Алёна</div><div class="admin-tag">УПРАВЛЕНИЕ СЕТЬЮ</div></div>
-            <div class="admin-box"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">لينا</div><div class="admin-tag">НАЧАЛЬНИК ЧАТА</div></div>
-            <div class="admin-box"><div class="admin-rank">СЕКТОР Б</div><div class="admin-name">Ханна</div><div class="admin-tag">Ramazanov_a❤️</div></div>
+    <div class="wrapper"><div class="admin-sidebar">
+            <div class="admin-box">
+                <div class="admin-rank">ГЛАВНЫЙ</div>
+                <div class="admin-name">Алёна</div>
+                <div class="admin-tag">УПРАВЛЕНИЕ СЕТЬЮ</div>
+            </div>
+            <div class="admin-box">
+                <div class="admin-rank">МОДЕРАТОР</div>
+                <div class="admin-name">ليна</div>
+                <div class="admin-tag">НАЧАЛЬНИК ЧАТА</div>
+            </div>
+            <div class="admin-box">
+                <div class="admin-rank">СЕКТОР Б</div>
+                <div class="admin-name">Ханна</div>
+                <div class="admin-tag">Ramazanov_a❤️</div>
+            </div>
         </div>
 
         <div class="main-container">
