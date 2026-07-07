@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ДОФАМИН // Protocol</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
@@ -23,74 +24,59 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Админские контакты в углу */
-        .admin-box { position: fixed; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 100; }
-        .admin-contact {
-            background: rgba(0, 255, 255, 0.1); border: 1px solid #00ffff;
-            padding: 8px 15px; border-radius: 50px; color: #00ffff;
-            font-size: 0.65em; font-weight: 800; text-decoration: none;
-            backdrop-filter: blur(5px); transition: 0.3s; text-align: center;
-        }
-        .admin-contact:hover { background: rgba(0, 255, 255, 0.2); transform: scale(1.05); }
-
-        /* Админские мемы на фоне */
-        .bg-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; pointer-events: none; }
-        .float-text { position: absolute; color: rgba(255, 255, 255, 0.05); font-weight: 800; font-size: 24px; animation: float 12s infinite linear; white-space: nowrap; }
-        @keyframes float {
-            from { transform: translateY(100vh) rotate(0deg); }
-            to { transform: translateY(-100px) rotate(360deg); }
+        .container { 
+            width: 100%; 
+            max-width: 500px;
+            display: flex; flex-direction: column; align-items: center;
+            margin-top: 50px;
         }
 
-        h1 { font-size: 3em; margin-bottom: 5px; text-transform: uppercase; text-shadow: 0 0 20px rgba(255, 0, 127, 0.5); cursor: pointer; transition: 0.3s; }
-        h1:hover { color: #ff007f; }
+        h1 { font-size: clamp(2em, 8vw, 3.5em); margin-bottom: 5px; text-transform: uppercase; cursor: pointer; text-shadow: 0 0 20px rgba(255, 0, 127, 0.5); }
         
-        .container { width: 100%; max-width: 450px; display: flex; flex-direction: column; align-items: center; }
-
         .rule-btn {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 18px; margin: 10px; width: 100%;
+            padding: 4% 5%; margin: 8px 0; width: 100%;
             border-radius: 15px; cursor: pointer; transition: 0.3s;
-            text-align: center; font-weight: bold; font-size: 0.9em;
+            text-align: center; font-weight: bold; font-size: clamp(0.8em, 2vw, 1em);
+            box-sizing: border-box;
         }
-        .rule-btn:hover { background: rgba(255, 0, 127, 0.15); border-color: #ff007f; transform: scale(1.02); }
         
-        .punishment {
-            display: none; color: #ff007f; margin-top: 12px;
-            font-size: 0.85em; font-weight: 800; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 10px;
-        }
+        .rule-btn:hover { background: rgba(255, 0, 127, 0.15); border-color: #ff007f; }
+        
+        .punishment { display: none; color: #ff007f; margin-top: 10px; font-size: 0.9em; font-weight: 800; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px; }
 
-        .footer { margin-top: 30px; color: #888; font-size: 0.65em; text-align: center; line-height: 1.4; padding: 0 10px; }
+        .footer { margin-top: 30px; color: #888; font-size: 0.7em; text-align: center; padding: 0 20px; }
+
+        .bg-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .float-text { position: absolute; color: rgba(255, 255, 255, 0.03); font-weight: 800; font-size: 5vw; animation: float 15s infinite linear; white-space: nowrap; }
+        @keyframes float { from { transform: translateY(110vh) rotate(0deg); } to { transform: translateY(-20vh) rotate(360deg); } }
     </style>
 </head>
 <body>
-    
-    <!-- Админские мемы на фоне -->
+
     <div class="bg-elements">
         <div class="float-text" style="left: 5%; animation-delay: 0s;">В БАН!</div>
-        <div class="float-text" style="left: 25%; animation-delay: 3s;">МУТ</div>
-        <div class="float-text" style="left: 45%; animation-delay: 6s;">ЭТО УГРОЗА СТАБИЛЬНОСТИ!</div>
-        <div class="float-text" style="left: 70%; animation-delay: 2s;">ПОЧЕМУ НЕ 16+?</div>
-        <div class="float-text" style="left: 10%; animation-delay: 8s;">ГДЕ ПРУФЫ?</div>
-        <div class="float-text" style="left: 80%; animation-delay: 4s;">❤️</div>
-        <div class="float-text" style="left: 50%; animation-delay: 10s;">НЕ ОБСУЖДАЕТСЯ</div>
-    </div><div class="container">
+        <div class="float-text" style="left: 60%; animation-delay: 5s;">МУТ</div>
+        <div class="float-text" style="left: 20%; animation-delay: 8s;">УГРОЗА СТАБИЛЬНОСТИ!</div>
+    </div>
+
+    <div class="container">
         <h1 onclick="adminMad()">ДОФАМИН</h1>
-        <p style="margin-bottom: 30px; opacity: 0.6; font-size: 0.8em;">КАВКАЗ 2.0 // INTERACTIVE RULES</p>
+        <p style="margin-bottom: 30px; opacity: 0.6; font-size: 0.8em; text-align: center;">КАВКАЗ 2.0 // INTERACTIVE RULES</p>
 
         <div class="rule-btn" onclick="toggle(this)">🚫 Возраст 16+ <div class="punishment">Минимальный порог входа</div></div>
         <div class="rule-btn" onclick="toggle(this)">🤬 Мат, оскорбления, унижения <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
         <div class="rule-btn" onclick="toggle(this)">🙏 Оскорбление религии / родителей <div class="punishment">БАН</div></div>
         <div class="rule-btn" onclick="toggle(this)">🌍 Высмеивание нации или религии <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
         <div class="rule-btn" onclick="toggle(this)">⚖️ Политика и СВО <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
-        <div class="rule-btn" onclick="toggle(this)">🚫 Докс, слив, пробив <div class="punishment">МГНОВЕННЫЙ БАН</div></div>
-        <div class="rule-btn" onclick="toggle(this)">🔞 Шок-контент, 18+ <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
+        <div class="rule-btn" onclick="toggle(this)">🚫 Докс, слив, пробив <div class="punishment">МГНОВЕННЫЙ БАН</div></div><div class="rule-btn" onclick="toggle(this)">🔞 Шок-контент, 18+ <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
         <div class="rule-btn" onclick="toggle(this)">💸 Попрошайничество, реклама <div class="punishment">Мут 1 час</div></div>
         <div class="rule-btn" onclick="toggle(this)">💊 Обсуждение наркотиков <div class="punishment">Мут 15 мин</div></div>
 
         <div class="footer">
-            Владелец имеет право выдать бан без объяснения причин. Администрация оставляет за собой право эскалации наказания за «угрозу стабильности чата». Решение администратора не подлежит обсуждению. Веди себя адекватно ❤️
+            Владелец имеет право выдать бан без объяснения причин. Решение администратора не подлежит обсуждению. Веди себя адекватно ❤️
         </div>
     </div>
 
@@ -100,10 +86,8 @@
             p.style.display = (p.style.display === 'block') ? 'none' : 'block';
             if (navigator.vibrate) navigator.vibrate(50);
         }
-
         function adminMad() {
             document.body.style.background = 'radial-gradient(circle at 50% 50%, #4a0000, #000)';
-            alert('АДМИН ЗЛИТСЯ! Не испытывай терпение!');
             setTimeout(() => { document.body.style.background = 'radial-gradient(circle at 50% 50%, #1a001a, #000)'; }, 1000);
         }
     </script>
