@@ -3,93 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ДОФАМИН // Protocol</title>
+    <title>ДОФАМИН // PROTOCOL</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&family=Courier+Prime:wght@400;700&display=swap');
         
-        body {
-            margin: 0; padding: 20px;
-            font-family: 'Montserrat', sans-serif;
-            background: radial-gradient(circle at 50% 50%, #1a001a, #000);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: #fff; min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center;
-            overflow-x: hidden;
-        }
+        :root { --main: #ff007f; --bg: #050505; --text: #fff; --font: 'Inter', sans-serif; }
+        .terminal-mode { --main: #00ff00; --bg: #000; --text: #00ff00; --font: 'Courier Prime', monospace; }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container { 
-            width: 100%; 
-            max-width: 500px;
-            display: flex; flex-direction: column; align-items: center;
-            margin-top: 50px;
-        }
-
-        h1 { font-size: clamp(2em, 8vw, 3.5em); margin-bottom: 5px; text-transform: uppercase; cursor: pointer; text-shadow: 0 0 20px rgba(255, 0, 127, 0.5); }
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-y: auto; user-select: none; transition: 0.5s; }
         
-        .rule-btn {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 4% 5%; margin: 8px 0; width: 100%;
-            border-radius: 15px; cursor: pointer; transition: 0.3s;
-            text-align: center; font-weight: bold; font-size: clamp(0.8em, 2vw, 1em);
-            box-sizing: border-box;
-        }
+        .cursor-glow { position: fixed; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(255,0,127,0.05) 0%, transparent 70%); pointer-events: none; z-index: 100; transform: translate(-50%, -50%); transition: 0.1s; }
         
-        .rule-btn:hover { background: rgba(255, 0, 127, 0.15); border-color: #ff007f; }
+        .container { width: 90%; max-width: 550px; padding: 40px; background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(40px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 50px; text-align: center; }
+        .avatar { width: 120px; height: 120px; border-radius: 30px; margin: 0 auto 20px; border: 2px solid var(--main); overflow: hidden; box-shadow: 0 0 20px rgba(255,0,127,0.2); cursor: pointer; }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
         
-        .punishment { display: none; color: #ff007f; margin-top: 10px; font-size: 0.9em; font-weight: 800; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px; }
-
-        .footer { margin-top: 30px; color: #888; font-size: 0.7em; text-align: center; padding: 0 20px; }
-
-        .bg-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .float-text { position: absolute; color: rgba(255, 255, 255, 0.03); font-weight: 800; font-size: 5vw; animation: float 15s infinite linear; white-space: nowrap; }
-        @keyframes float { from { transform: translateY(110vh) rotate(0deg); } to { transform: translateY(-20vh) rotate(360deg); } }
+        h1 { font-size: 2.2em; text-transform: uppercase; margin: 0; color: var(--main); letter-spacing: -2px; }
+        
+        .status-line { height: 1px; width: 100%; background: #222; margin: 20px 0; position: relative; }
+        .status-line::after { content: ''; position: absolute; height: 1px; background: var(--main); animation: scan 2s infinite linear; }
+        @keyframes scan { from { left: 0; width: 0%; } 50% { width: 100%; } to { left: 100%; width: 0%; } }
+        
+        .meta-data { font-size: 0.6em; color: #555; margin-bottom: 20px; letter-spacing: 3px; text-transform: uppercase; }
+        .constitution { text-align: left; font-size: 0.75em; color: var(--text); padding: 20px; border-left: 2px solid var(--main); margin: 20px 0; background: rgba(255, 255, 255, 0.03); line-height: 1.6; opacity: 0.8; }
+        
+        .rule-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); padding: 15px; margin: 10px 0; border-radius: 15px; cursor: pointer; text-align: left; transition: 0.3s; font-size: 0.9em; display: flex; flex-direction: column; }
+        .rule-btn:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--main); }
+        .header-row { display: flex; align-items: center; }
+        
+        /* Векторный стиль иконок */
+        .stamp-svg { width: 22px; height: 22px; margin-right: 15px; stroke: var(--main); stroke-width: 2; fill: none; }
+        
+        .punishment { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s ease; color: var(--main); font-weight: 600; font-size: 0.9em; }
+        .rule-btn.active .punishment { max-height: 60px; opacity: 1; margin-top: 10px; }
+        .footer { font-size: 0.6em; color: #444; margin-top: 30px; text-transform: uppercase; letter-spacing: 1px; }
     </style>
 </head>
-<body>
-
-    <div class="bg-elements">
-        <div class="float-text" style="left: 5%; animation-delay: 0s;">В БАН!</div>
-        <div class="float-text" style="left: 60%; animation-delay: 5s;">МУТ</div>
-        <div class="float-text" style="left: 20%; animation-delay: 8s;">УГРОЗА СТАБИЛЬНОСТИ!</div>
-    </div>
+<body id="body">
+    <div class="cursor-glow" id="cursor"></div>
 
     <div class="container">
-        <h1 onclick="adminMad()">ДОФАМИН</h1>
-        <p style="margin-bottom: 30px; opacity: 0.6; font-size: 0.8em; text-align: center;">КАВКАЗ 2.0 // INTERACTIVE RULES</p>
-
-        <div class="rule-btn" onclick="toggle(this)">🚫 Возраст 16+ <div class="punishment">Минимальный порог входа</div></div>
-        <div class="rule-btn" onclick="toggle(this)">🤬 Мат, оскорбления, унижения <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
-        <div class="rule-btn" onclick="toggle(this)">🙏 Оскорбление религии / родителей <div class="punishment">БАН</div></div>
-        <div class="rule-btn" onclick="toggle(this)">🌍 Высмеивание нации или религии <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
-        <div class="rule-btn" onclick="toggle(this)">⚖️ Политика и СВО <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
-        <div class="rule-btn" onclick="toggle(this)">🚫 Докс, слив, пробив <div class="punishment">МГНОВЕННЫЙ БАН</div></div><div class="rule-btn" onclick="toggle(this)">🔞 Шок-контент, 18+ <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
-        <div class="rule-btn" onclick="toggle(this)">💸 Попрошайничество, реклама <div class="punishment">Мут 1 час</div></div>
-        <div class="rule-btn" onclick="toggle(this)">💊 Обсуждение наркотиков <div class="punishment">Мут 15 мин</div></div>
+        <div class="avatar" onclick="hackMode()"><img src="photo_2026-07-04_16-19-39.jpg" alt="Avatar"></div>
+        <h1>ДОФАМИН</h1>
+        <div class="status-line"></div>
+        <div class="meta-data">PROTOCOL_ACTIVE // ENCRYPTION_ENABLED</div>
+        
+        <div class="constitution">
+            <b>ОТДЕЛ АДМИНИСТРИРОВАНИЯ:</b><br>
+            Администрация оставляет за собой право эскалации наказания при квалификации правонарушения как "угроза стабильности чата". Решение администратора не требует обсуждения.
+        </div><div id="list">
+            <div class="rule-btn" onclick="toggle(this)"><div class="header-row"><svg class="stamp-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="8" x2="12" y2="16"/></svg> Возраст 16+</div> <div class="punishment">Минимальный порог входа</div></div>
+            <div class="rule-btn" onclick="toggle(this)"><div class="header-row"><svg class="stamp-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="7" y1="7" x2="17" y2="17"/></svg> Мат, оскорбления</div> <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
+            <div class="rule-btn" onclick="toggle(this)"><div class="header-row"><svg class="stamp-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="7" y1="7" x2="17" y2="17"/></svg> Религия / Родители</div> <div class="punishment">БАН</div></div>
+            <div class="rule-btn" onclick="toggle(this)"><div class="header-row"><svg class="stamp-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="7" y1="7" x2="17" y2="17"/></svg> Нация или религия</div> <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
+            <div class="rule-btn" onclick="toggle(this)"><div class="header-row"><svg class="stamp-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="7" y1="7" x2="17" y2="17"/></svg> Политика и СВО</div> <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
+            <div class="rule-btn" onclick="toggle(this)"><div class="header-row"><svg class="stamp-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="7" y1="7" x2="17" y2="17"/></svg> Угрозы доксом, сливом</div> <div class="punishment">МГНОВЕННЫЙ БАН</div></div>
+            <div class="rule-btn" onclick="toggle(this)"><div class="header-row"><svg class="stamp-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="7" y1="7" x2="17" y2="17"/></svg> Шок-контент, 18+</div> <div class="punishment">Мут 15 мин, повторно — 1 час</div></div>
+            <div class="rule-btn" onclick="toggle(this)"><div class="header-row"><svg class="stamp-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="7" y1="7" x2="17" y2="17"/></svg> Попрошайничество, реклама</div> <div class="punishment">Мут 1 час</div></div>
+            <div class="rule-btn" onclick="toggle(this)"><div class="header-row"><svg class="stamp-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="7" y1="7" x2="17" y2="17"/></svg> Обсуждение наркотиков</div> <div class="punishment">Мут 15 мин</div></div>
+        </div>
 
         <div class="footer">
-            Владелец имеет право выдать бан без объяснения причин. Решение администратора не подлежит обсуждению. Веди себя адекватно ❤️
+            Владелец чата имеет право выдать бан без объяснения причин. 
         </div>
     </div>
 
+    <audio id="sfx" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
+
     <script>
-        function toggle(el) {
-            let p = el.querySelector('.punishment');
-            p.style.display = (p.style.display === 'block') ? 'none' : 'block';
-            if (navigator.vibrate) navigator.vibrate(50);
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+
+        let count = 0;
+        function hackMode() {
+            count++;
+            if(count >= 5) { document.getElementById('body').classList.toggle('terminal-mode'); count = 0; }
         }
-        function adminMad() {
-            document.body.style.background = 'radial-gradient(circle at 50% 50%, #4a0000, #000)';
-            setTimeout(() => { document.body.style.background = 'radial-gradient(circle at 50% 50%, #1a001a, #000)'; }, 1000);
-        }
+
+        const audio = document.getElementById('sfx');
+        document.addEventListener('click', () => { audio.play().then(() => { audio.pause(); audio.currentTime = 0; }); }, { once: true });
+        function toggle(el) { el.classList.toggle('active'); audio.currentTime = 0; audio.play().catch(e => {}); }
     </script>
 </body>
 </html>
