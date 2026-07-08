@@ -4,130 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ДОФАМИН // KAVKAZ 2.0</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&family=Courier+Prime:wght@400;700&display=swap');
-        
-        :root { --main: #ff007f; --bg: #0a0a0c; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); }
-
-        html, body { 
-            margin: 0; padding: 0; background-color: #050505;
-            background-image: radial-gradient(at 0% 0%, #1a0b16 0px, transparent 50%), radial-gradient(at 100% 100%, #0b0f1a 0px, transparent 50%);
-            color: #ffffff; font-family: 'Inter', sans-serif; min-height: 100vh; overflow-x: hidden; 
-        }
-
-        body { display: flex; justify-content: center; align-items: flex-start; padding: 40px 20px; box-sizing: border-box; }
-        .wrapper { display: flex; gap: 30px; align-items: flex-start; width: 100%; max-width: 950px; justify-content: center; flex-wrap: wrap; }
-        
-        .admin-box, .content-box { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--border); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
-
-        .admin-sidebar { width: 220px; display: flex; flex-direction: column; gap: 15px; flex-shrink: 0; }
-        .admin-box { padding: 15px; border-radius: 20px; display: flex; align-items: center; gap: 15px; transition: 0.4s; }
-        .admin-box:hover { border-color: var(--main); background: rgba(255,255,255,0.06); }
-        
-        .admin-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 1px solid var(--main); }
-        .admin-rank { color: var(--main); font-size: 0.55em; text-transform: uppercase; letter-spacing: 2px; }
-        .admin-name { font-size: 0.9em; font-weight: 600; }
-        .admin-tag { font-size: 0.65em; color: #888; font-family: 'Courier Prime'; }
-        
-        .main-container { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 15px; }
-        .content-box { padding: 40px; border-radius: 30px; }
-        
-        .avatar { width: 100px; height: 100px; margin: 0 auto 20px; border-radius: 25px; border: 1px solid var(--border); overflow: hidden; }
-        .avatar img { width: 100%; height: 100%; object-fit: cover; }
-        
-        h1 { font-size: 1.6em; margin: 0; color: #fff; text-align: center; letter-spacing: 1px; }
-        .sub-h1 { text-align: center; color: var(--main); font-size: 0.5em; letter-spacing: 5px; margin-bottom: 25px; text-transform: uppercase; }
-        
-        .welcome-msg, .ps-msg { font-size: 0.75em; text-align: center; margin-bottom: 15px; padding: 12px; border-radius: 12px; line-height: 1.5; }
-        .welcome-msg { color: var(--main); background: rgba(255,0,127,0.05); }
-        .ps-msg { color: #888; border: 1px solid var(--border); }
-
-        .rule-btn { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 14px 20px; margin: 6px 0; border-radius: 12px; cursor: pointer; transition: 0.3s; font-size: 0.85em; }
-        .rule-btn:hover { border-color: var(--main); background: rgba(255,255,255,0.05); }
-        .rule-btn.active { border-color: var(--main); background: rgba(255,0,127,0.1); }
-
-        .detail-panel { 
-            position: fixed; left: -450px; top: 20px; bottom: 20px; width: 350px; 
-            background: rgba(10, 10, 12, 0.95); border: 1px solid var(--main); 
-            border-radius: 30px; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
-            padding: 30px; z-index: 100; box-sizing: border-box; cursor: pointer; backdrop-filter: blur(15px);
-            box-shadow: 0 0 40px rgba(255,0,127,0.2);
-        }
-        .detail-panel.active { left: 20px; }#detailImg { width: 100%; border-radius: 20px; margin-bottom: 20px; border: 1px solid var(--main); display: block; }
-        .header-icon { width: 30px; height: 30px; fill: var(--main); margin-bottom: 10px; }
-        .detail-title { color: #fff; font-size: 1.5em; font-weight: 900; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .detail-text { font-size: 0.95em; line-height: 1.6; color: #ccc; }
-        
-        @media (max-width: 850px) { 
-            .wrapper { flex-direction: column; align-items: center; } 
-            .detail-panel { width: 90%; left: -110%; } 
-            .detail-panel.active { left: 5%; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="admin-sidebar">
-            <div class="admin-box">
-                <img src="алена.jpg" class="admin-avatar" alt="Алёна">
-                <div class="admin-info"><div class="admin-rank">ГЛАВНЫЙ</div><div class="admin-name">Алёна</div><div class="admin-tag">УПРАВЛЕНИЕ</div></div>
-            </div>
-            <div class="admin-box">
-                <img src="лина.jpg" class="admin-avatar" alt="ليна">
-                <div class="admin-info"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">لينا</div><div class="admin-tag">Начальник Чата</div></div>
-            </div>
-            <div class="admin-box">
-                <img src="ханна.jpg" class="admin-avatar" alt="Ханна">
-                <div class="admin-info"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">Ханна</div><div class="admin-tag">Малыш Мага</div></div>
-            </div>
-        </div>
-        
-        <div class="main-container">
-            <div class="content-box">
-                <div class="avatar"><img src="photo_2026-07-04_16-19-39.jpg" alt="Avatar"></div>
-                <h1>ДОФАМИН</h1>
-                <div class="sub-h1">KAVKAZ 2.0</div>
-                <div class="ps-msg">P.s. Администрация оставляет за собой право эскалации наказания (увеличения его срока до 2 часов и более) при квалификации правонарушения как "угроза стабильности чата"
-Решение о наличии угрозы является исключительной прерогативой администратора, производившего блокировку, и не требует обсуждения с другими участниками.</div>
-                <div class="welcome-msg">Веди себя адекватно и уважительно, и тогда тебе здесь понравится ❤️</div>
-                <div id="list">
-                    <div class="rule-btn" onclick="showDetail(this, 'Возраст', 'Нарушение: Младше 16 лет\nНаказание: Бан', '16')">Возраст</div>
-                    <div class="rule-btn" onclick="showDetail(this, 'Мат', 'Нарушение: Мат, оскорбления, унижения\nНаказание: Мут 15 мин, повторно — 1 час', 'мат')">Мат</div>
-                    <div class="rule-btn" onclick="showDetail(this, 'Религия', 'Нарушение: Оскорбление религии\nНаказание: Бан', 'религия')">Религия</div>
-                    <div class="rule-btn" onclick="showDetail(this, 'Родители', 'Нарушение: Оскорбление родителей\nНаказание: Бан', 'семья')">Родители</div>
-                    <div class="rule-btn" onclick="showDetail(this, 'Нация', 'Нарушение: Высмеивание нации\nНаказание: Мут 15 мин, повторно — 1 час', 'нация')">Нация</div>
-                    <div class="rule-btn" onclick="showDetail(this, 'Политика', 'Нарушение: Политический спор (в т.ч. СВО)\nНаказание: Мут 15 мин, повторно — 1 час', 'политика')">Политика</div>
-                    <div class="rule-btn" onclick="showDetail(this, 'Докс', 'Нарушение: Угрозы доксом, пробивание\nНаказание: Бан', 'докс')">Докс</div>
-                    <div class="rule-btn" onclick="showDetail(this, 'Контент', 'Нарушение: Шок-контент, 18+\nНаказание: Мут 15 мин, повторно — 1 час', 'shok18')">Контент</div>
-                    <div class="rule-btn" onclick="showDetail(this, 'Попрошайничество', 'Нарушение: Попрошайничество\nНаказание: Мут 1 час', 'бомж')">Попрошайничество</div>
-                    <div class="rule-btn" onclick="showDetail(this, 'Реклама', 'Нарушение: Реклама в чате\nНаказание: Мут 1 час', 'реклама')">Реклама</div><div class="rule-btn" onclick="showDetail(this, 'Наркотики', 'Нарушение: Обсуждение наркотиков\nНаказание: Мут 15 мин', 'наркотики')">Наркотики</div>
-                </div>
-            </div>
-        </div>
 
-        <div class="detail-panel" id="detailPanel" onclick="this.classList.remove('active')">
-            <div class="detail-title" id="dTitle">Информация</div>
-            <img id="detailImg" src="" alt="Rule" onerror="this.style.display='none'">
-            <div class="detail-text" id="dText">Выберите правило...</div>
-        </div>
+    <div class="wrapper">
+        <aside class="admin-sidebar">
+            <div class="admin-box"><img src="алена.jpg" class="admin-avatar"><div class="admin-info"><div class="admin-rank">ГЛАВНЫЙ</div><div class="admin-name">Алёна</div><div class="admin-tag">УПРАВЛЕНИЕ</div></div></div>
+            <div class="admin-box"><img src="лина.jpg" class="admin-avatar"><div class="admin-info"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">ليна</div><div class="admin-tag">Начальник Чата</div></div></div>
+            <div class="admin-box"><img src="ханна.jpg" class="admin-avatar"><div class="admin-info"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">Ханна</div><div class="admin-tag">Малыш Мага</div></div></div>
+        </aside>
+
+        <main class="content-box">
+            <div class="avatar"><img src="photo_2026-07-04_16-19-39.jpg" alt="Avatar"></div>
+            <h1>ДОФАМИН</h1>
+            <div class="sub-h1">KAVKAZ 2.0</div>
+            
+            <div class="welcome-msg">Веди себя адекватно и уважительно, и тогда тебе здесь понравится ❤️</div>
+            
+            <!-- Кнопка вступления -->
+            <a href="ВАША_ССЫЛКА_ЗДЕСЬ" class="cta-btn">ВОЙТИ В ЧАТ</a>
+
+            <div id="list">
+                <div class="rule-btn" onclick="showDetail(this, 'Возраст', 'Нарушение: Младше 16 лет\nНаказание: Бан', '16')">Возраст</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Мат', 'Нарушение: Мат, оскорбления, унижения\nНаказание: Мут 15 мин, повторно — 1 час', 'мат')">Мат</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Религия', 'Нарушение: Оскорбление религии\nНаказание: Бан', 'религия')">Религия</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Родители', 'Нарушение: Оскорбление родителей\nНаказание: Бан', 'семья')">Родители</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Нация', 'Нарушение: Высмеивание нации\nНаказание: Мут 15 мин, повторно — 1 час', 'нация')">Нация</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Политика', 'Нарушение: Политический спор (в т.ч. СВО)\nНаказание: Мут 15 мин, повторно — 1 час', 'политика')">Политика</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Докс', 'Нарушение: Угрозы доксом, пробивание\nНаказание: Бан', 'докс')">Докс</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Контент', 'Нарушение: Шок-контент, 18+\nНаказание: Мут 15 мин, повторно — 1 час', 'shok18')">Контент</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Попрошайничество', 'Нарушение: Попрошайничество\nНаказание: Мут 1 час', 'бомж')">Попрошайничество</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Реклама', 'Нарушение: Реклама в чате\nНаказание: Мут 1 час', 'реклама')">Реклама</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Наркотики', 'Нарушение: Обсуждение наркотиков\nНаказание: Мут 15 мин', 'наркотики')">Наркотики</div>
+            </div>
+
+            <div class="ps-msg">
+                P.s. Администрация оставляет за собой право эскалации наказания при квалификации правонарушения как "угроза стабильности чата". 
+                Решение о наличии угрозы является исключительной прерогативой администратора.
+            </div>
+        </main>
     </div>
 
-    <script>
-        function showDetail(el, title, text, imgName) {
-            const panel = document.getElementById('detailPanel');
-            const img = document.getElementById('detailImg');
-            
-            document.getElementById('dTitle').innerText = title;
-            document.getElementById('dText').innerText = text;
-            
-            // Загружаем картинку (добавляем .jpg)
-            img.src = imgName + '.jpg';
-            img.style.display = 'block'; 
-            
-            document.querySelectorAll('.rule-btn').forEach(btn => btn.classList.remove('active'));
-            el.classList.add('active');
-            panel.classList.add('active');
-        }
-    </script>
+    <div class="detail-panel" id="detailPanel" onclick="this.classList.remove('active')">
+        <div class="detail-title" id="dTitle">Информация</div>
+        <img id="detailImg" src="" alt="Rule" onerror="this.style.display='none'">
+        <div class="detail-text" id="dText">Выберите правило...</div>
+    </div>
+
+    <script src="skript.js"></script>
 </body>
 </html>
