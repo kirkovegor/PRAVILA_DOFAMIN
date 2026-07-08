@@ -10,18 +10,37 @@
 
     <div class="wrapper">
         <aside class="admin-sidebar">
-            <div class="admin-box"><img src="алена.jpg" class="admin-avatar"><div class="admin-info"><div class="admin-rank">ГЛАВНЫЙ</div><div class="admin-name">Алёна</div><div class="admin-tag">УПРАВЛЕНИЕ</div></div></div>
-            <div class="admin-box"><img src="лина.jpg" class="admin-avatar"><div class="admin-info"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">لينا</div><div class="admin-tag">Начальник Чата</div></div></div>
-            <div class="admin-box"><img src="ханна.jpg" class="admin-avatar"><div class="admin-info"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">Ханна</div><div class="admin-tag">Малыш Мага</div></div></div>
-        </aside>
+    <div class="admin-box admin-click" onclick="showAdmin('Алёна', 'УПРАВЛЕНИЕ', 'алена.jpg', 'https://tg://openmessage?user_id=6639046415')">
+        <img src="алена.jpg" class="admin-avatar">
+        <div class="admin-info">
+            <div class="admin-rank">ГЛАВНЫЙ</div>
+            <div class="admin-name">Алёна</div>
+            <div class="admin-tag">УПРАВЛЕНИЕ</div>
+        </div>
+    </div>
+    <div class="admin-box admin-click" onclick="showAdmin('ليна', 'Начальник Чата', 'лина.jpg', 'tg://openmessage?user_id=981194230')">
+        <img src="лина.jpg" class="admin-avatar">
+        <div class="admin-info">
+            <div class="admin-rank">МОДЕРАТОР</div>
+            <div class="admin-name">لينا</div>
+            <div class="admin-tag">Начальник Чата</div>
+        </div>
+    </div>
+    <div class="admin-box admin-click" onclick="showAdmin('Ханна', 'Малыш Мага', 'ханна.jpg', 'tg://openmessage?user_id=5346111794')">
+        <img src="ханна.jpg" class="admin-avatar">
+        <div class="admin-info">
+            <div class="admin-rank">МОДЕРАТОР</div>
+            <div class="admin-name">Ханна</div>
+            <div class="admin-tag">Малыш Мага</div>
+        </div>
+    </div>
+</aside>
 
         <main class="content-box">
             <div class="avatar"><img src="photo_2026-07-04_16-19-39.jpg" alt="Avatar"></div>
             <h1>ДОФАМИН</h1>
             <div class="sub-h1">KAVKAZ 2.0</div>
-            
             <div class="welcome-msg">Веди себя адекватно и уважительно, и тогда тебе здесь понравится ❤️</div>
-            
             <a href="ВАША_ССЫЛКА_ЗДЕСЬ" class="cta-btn">ВОЙТИ В ЧАТ</a>
 
             <div id="list">
@@ -39,17 +58,16 @@
             </div>
 
             <div class="ps-msg">
-                P.s. Администрация оставляет за собой право эскалации наказания при квалификации правонарушения как "угроза стабильности чата". 
-                Решение о наличии угрозы является исключительной прерогативой администратора.
+                 P.s. Администрация оставляет за собой право эскалации наказания (увеличения его срока до 2 часов и более) при квалификации правонарушения как "угроза стабильности чата"
+Решение о наличии угрозы является исключительной прерогативой администратора, производившего блокировку, и не требует обсуждения с другими участниками. 
             </div>
         </main>
-    </div>
-
-    <div class="detail-panel" id="detailPanel">
+    </div><div class="detail-panel" id="detailPanel">
         <div class="panel-inner">
             <div class="detail-title" id="dTitle">Информация</div>
-            <img id="detailImg" src="" alt="Rule" onerror="this.style.display='none'">
-            <div class="detail-text" id="dText">Выберите правило...</div>
+            <img id="detailImg" src="" alt="Detail">
+            <div class="detail-text" id="dText"></div>
+            <a href="#" id="dLink" class="cta-btn" style="display:none; margin-top:20px; text-align:center;">НАПИСАТЬ</a>
         </div>
     </div>
 
