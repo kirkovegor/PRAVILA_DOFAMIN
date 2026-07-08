@@ -74,7 +74,7 @@
             </div>
             <div class="admin-box">
                 <img src="лина.jpg" class="admin-avatar" alt="ليна">
-                <div class="admin-info"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">لينا</div><div class="admin-tag">Начальник Чата</div></div>
+                <div class="admin-info"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">ليна</div><div class="admin-tag">Начальник Чата</div></div>
             </div>
             <div class="admin-box">
                 <img src="ханна.jpg" class="admin-avatar" alt="Ханна">
@@ -121,9 +121,9 @@
             document.getElementById('dTitle').innerText = title;
             document.getElementById('dText').innerText = text;
             
-            // Загружаем картинку
+            // Устанавливаем путь к картинке
             img.src = imgName + '.jpg';
-            // Принудительно показываем, если до этого сработал onerror
+            // Принудительно показываем, если картинка была скрыта
             img.style.display = 'block'; 
             
             document.querySelectorAll('.rule-btn').forEach(btn => btn.classList.remove('active'));
