@@ -6,15 +6,23 @@
     <title>ДОФАМИН // KAVKAZ 2.0</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&family=Courier+Prime:wght@400;700&display=swap');
-        :root { --main: #ff007f; --bg: #0a0a0c; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); }
         
+        :root { 
+            --main: #ff007f; 
+            --bg: #0a0a0c; 
+            --glass: rgba(255, 255, 255, 0.03); 
+            --border: rgba(255, 255, 255, 0.1); 
+        }
+
         html, body { 
-            margin: 0; padding: 0; 
+            margin: 0; 
+            padding: 0; 
             background-color: #050505;
             background-image: radial-gradient(at 0% 0%, #1a0b16 0px, transparent 50%), radial-gradient(at 100% 100%, #0b0f1a 0px, transparent 50%);
             color: #ffffff; 
             font-family: 'Inter', sans-serif; 
-            min-height: 100vh; overflow-x: hidden; 
+            min-height: 100vh; 
+            overflow-x: hidden; 
         }
 
         body { display: flex; justify-content: center; align-items: flex-start; padding: 40px 20px; box-sizing: border-box; }
@@ -38,6 +46,7 @@
         
         .main-container { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 15px; }
         .content-box { padding: 40px; border-radius: 30px; }
+        
         .avatar { width: 100px; height: 100px; margin: 0 auto 20px; border-radius: 25px; border: 1px solid var(--border); overflow: hidden; }
         .avatar img { width: 100%; height: 100%; object-fit: cover; }
         
@@ -52,7 +61,6 @@
         .rule-btn:hover { border-color: var(--main); background: rgba(255,255,255,0.05); }
         .rule-btn.active { border-color: var(--main); background: rgba(255,0,127,0.1); }
 
-        /* Выдвижная панель */
         .detail-panel { 
             position: fixed; left: -450px; top: 20px; bottom: 20px; width: 350px; 
             background: rgba(10, 10, 12, 0.95); 
@@ -85,7 +93,7 @@
             </div>
             <div class="admin-box">
                 <img src="лина.jpg" class="admin-avatar" alt="ليна">
-                <div class="admin-info"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">لينا</div><div class="admin-tag">Начальник Чата</div></div>
+                <div class="admin-info"><div class="admin-rank">МОДЕРАТОР</div><div class="admin-name">ليна</div><div class="admin-tag">Начальник Чата</div></div>
             </div>
             <div class="admin-box">
                 <img src="ханна.jpg" class="admin-avatar" alt="Ханна">
@@ -98,8 +106,7 @@
                 <div class="avatar"><img src="photo_2026-07-04_16-19-39.jpg" alt="Avatar"></div>
                 <h1>ДОФАМИН</h1>
                 <div class="sub-h1">KAVKAZ 2.0</div>
-                <div class="ps-msg">P.s. Администрация оставляет за собой право эскалации наказания (увеличения его срока до 2 часов и более) при квалификации правонарушения как "угроза стабильности чата"
-Решение о наличии угрозы является исключительной прерогативой администратора, производившего блокировку, и не требует обсуждения с другими участниками.</div>
+                <div class="ps-msg">P.s. Администрация оставляет за собой право эскалации наказания при квалификации правонарушения как "угроза стабильности чата".</div>
                 <div class="welcome-msg">Веди себя адекватно и уважительно, и тогда тебе здесь понравится ❤️</div>
                 <div id="list">
                     <div class="rule-btn" onclick="showDetail(this, 'Возраст', 'Нарушение: Младше 16 лет\nНаказание: Бан', '16')">Возраст</div>
