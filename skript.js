@@ -4,12 +4,21 @@ function showDetail(el, title, text, imgName) {
     
     document.getElementById('dTitle').innerText = title;
     document.getElementById('dText').innerText = text;
-    
     img.src = imgName + '.jpg';
-    img.style.display = 'block'; 
     
-    document.querySelectorAll('.rule-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.rule-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+    
     el.classList.add('active');
-    
     panel.classList.add('active');
 }
+
+document.getElementById('detailPanel').addEventListener('click', function(e) {
+    if (e.target === this) {
+        this.classList.remove('active');
+        document.querySelectorAll('.rule-btn').forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+    }
+});
