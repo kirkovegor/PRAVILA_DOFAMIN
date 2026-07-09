@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДОФАМИН // KAVKAZ 2.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="ageGate" class="age-gate">
+        <!-- Шаг 1 -->
+        <div class="panel-inner" id="gateStep1">
+            <div class="detail-title">ДОФАМИН // KAVKAZ 2.0</div>
+            <div class="detail-text" style="margin-bottom: 20px;">Сколько вам лет?</div>
+            <input type="number" id="ageInput" class="age-input" placeholder="Введите ваш возраст">
+            <button onclick="confirmAge()" class="cta-btn">ВОЙТИ</button>
+        </div>
+
+        <!-- Шаг 2 -->
+        <div class="panel-inner" id="gateStep2" style="display:none;">
+            <div class="detail-title">Подтверждение</div>
+            <div class="detail-text" id="confirmText" style="margin-bottom: 20px;"></div>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="grantAccess()" class="cta-btn" style="flex: 1;">ДА</button>
+                <button onclick="resetAge()" class="cta-btn" style="flex: 1; background: #333; color: #fff;">ИЗМЕНИТЬ</button>
+            </div>
+        </div>
+
+        <!-- Шаг 3: Красивый отказ -->
+        <div class="panel-inner" id="gateStep3" style="display:none;">
+            <div class="detail-title" style="color: #ff4d4d;">ДОСТУП ЗАКРЫТ</div>
+            <div class="detail-text" style="margin-bottom: 20px;">К сожалению, этот чат предназначен только для пользователей 16+.</div>
+            <button onclick="location.reload()" class="cta-btn" style="background: #333; color: #fff;">ПОНЯТНО</button>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <aside class="admin-sidebar">
+            <div class="admin-box admin-click" onclick="showAdmin('Алёна', 'УПРАВЛЕНИЕ', 'алена.jpg', 'https://t.me/6639046415')">
+                <img src="алена.jpg" class="admin-avatar">
+                <div class="admin-info">
+                    <div class="admin-rank">ГЛАВНЫЙ</div>
+                    <div class="admin-name">Алёна</div>
+                    <div class="admin-tag">УПРАВЛЕНИЕ</div>
+                </div>
+            </div>
+            <div class="admin-box admin-click" onclick="showAdmin('ليна', 'Начальник Чата', 'лина.jpg', 'https://t.me/981194230')">
+                <img src="лина.jpg" class="admin-avatar">
+                <div class="admin-info">
+                    <div class="admin-rank">МОДЕРАТОР</div>
+                    <div class="admin-name">لينا</div>
+                    <div class="admin-tag">Начальник Чата</div>
+                </div>
+            </div>
+            <div class="admin-box admin-click" onclick="showAdmin('Ханна', 'Малыш Мага', 'ханна.jpg', 'https://t.me/5346111794')">
+                <img src="ханна.jpg" class="admin-avatar">
+                <div class="admin-info">
+                    <div class="admin-rank">МОДЕРАТОР</div>
+                    <div class="admin-name">Ханна</div>
+                    <div class="admin-tag">Малыш Мага</div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content-box">
+            <div class="avatar"><img src="photo_2026-07-04_16-19-39.jpg" alt="Avatar"></div>
+            <h1>ДОФАМИН</h1>
+            <div class="sub-h1">KAVKAZ 2.0</div>
+            <div class="welcome-msg">Веди себя адекватно и уважительно, и тогда тебе здесь понравится ❤️</div>
+            <a href="#" class="cta-btn">ВОЙТИ В ЧАТ</a>
+
+            <div id="list">
+                <div class="rule-btn" onclick="showDetail(this, 'Возраст', 'Нарушение: Младше 16 лет\nНаказание: Бан', '16')">Возраст</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Мат', 'Нарушение: Мат, оскорбления, унижения\nНаказание: Мут 15 мин, повторно — 1 час', 'мат')">Мат</div><div class="rule-btn" onclick="showDetail(this, 'Религия', 'Нарушение: Оскорбление религии\nНаказание: Бан', 'религия')">Религия</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Родители', 'Нарушение: Оскорбление родителей\nНаказание: Бан', 'семья')">Родители</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Нация', 'Нарушение: Высмеивание нации\nНаказание: Мут 15 мин, повторно — 1 час', 'нация')">Нация</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Политика', 'Нарушение: Политический спор (в т.ч. СВО)\nНаказание: Мут 15 мин, повторно — 1 час', 'политика')">Политика</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Докс', 'Нарушение: Угрозы доксом, пробивание\nНаказание: Бан', 'докс')">Докс</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Контент', 'Нарушение: Шок-контент, 18+\nНаказание: Мут 15 мин, повторно — 1 час', 'shok18')">Контент</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Попрошайничество', 'Нарушение: Попрошайничество\nНаказание: Мут 1 час', 'бомж')">Попрошайничество</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Реклама', 'Нарушение: Реклама в чате\nНаказание: Мут 1 час', 'реклама')">Реклама</div>
+                <div class="rule-btn" onclick="showDetail(this, 'Наркотики', 'Нарушение: Обсуждение наркотиков\nНаказание: Мут 15 мин', 'наркотики')">Наркотики</div>
+            </div>
+
+            <div class="ps-msg">
+                P.s. Администрация оставляет за собой право эскалации наказания при квалификации правонарушения как "угроза стабильности чата". 
+            </div>
+        </main>
+    </div>
+
+    <div class="detail-panel" id="detailPanel">
+        <div class="panel-inner">
+            <div class="detail-title" id="dTitle">Информация</div>
+            <img id="detailImg" src="" alt="Detail">
+            <div class="detail-text" id="dText"></div>
+            <a href="#" id="dLink" class="cta-btn" style="display:none; margin-top:20px; text-align:center;">НАПИСАТЬ</a>
+        </div>
+    </div>
+
+    <script src="skript.js"></script>
+</body>
+</html>
